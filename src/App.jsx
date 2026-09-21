@@ -3,6 +3,8 @@ import Navbar from './components/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import Equipment from './pages/Equipment.jsx'
+import EquipmentDetails from './pages/EquipmentDetails.jsx'
 import GuestRoute from './routes/GuestRoute.jsx'
 
 function App() {
@@ -11,6 +13,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/equipment" element={<Equipment />} />
+        <Route path="/equipment/:id" element={<EquipmentDetails />} />
 
         <Route element={<GuestRoute />}>
           <Route path="/login" element={<Login />} />

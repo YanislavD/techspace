@@ -7,6 +7,7 @@ function Navbar() {
   return (
     <nav>
       <Link to="/">TechSpace</Link>
+      <Link to="/equipment">Каталог</Link>
 
       {user ? (
         <>

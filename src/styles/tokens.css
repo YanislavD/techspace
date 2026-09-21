@@ -1,0 +1,30 @@
+:root {
+  --bg: #FAF6EC;
+  --surface: #FFFFFF;
+  --surface-alt: #F0E8D8;
+  --ink: #211F1A;
+  --ink-muted: #6B6357;
+  --border: #E3DCC9;
+
+  --available: #2F6B49;
+  --booked: #B2532B;
+  --maint: #8A6A26;
+  --upcoming: #3D5A73;
+
+  --cat-laptops: #3B6E4F;
+  --cat-monitors: #2E6E82;
+  --cat-vr: #6E4F8A;
+  --cat-projectors: #8A6A26;
+  --cat-tablets: #3E6FA8;
+  --cat-audio: #A34266;
+  --cat-video: #1F6E5C;
+  --cat-peripherals: #C1573A;
+  --cat-default: var(--ink-muted);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+}

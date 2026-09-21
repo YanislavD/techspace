@@ -1,0 +1,52 @@
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.equipment-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.equipment-card__thumb {
+  height: 80px;
+}
+
+.equipment-card__thumb[data-category="laptops"] { background: var(--cat-laptops); }
+.equipment-card__thumb[data-category="monitors"] { background: var(--cat-monitors); }
+.equipment-card__thumb[data-category="vr"] { background: var(--cat-vr); }
+.equipment-card__thumb[data-category="projectors"] { background: var(--cat-projectors); }
+.equipment-card__thumb[data-category="tablets"] { background: var(--cat-tablets); }
+.equipment-card__thumb[data-category="audio"] { background: var(--cat-audio); }
+.equipment-card__thumb[data-category="video"] { background: var(--cat-video); }
+.equipment-card__thumb[data-category="peripherals"] { background: var(--cat-peripherals); }
+.equipment-card__thumb[data-category="default"] { background: var(--cat-default); }
+
+.equipment-card__body {
+  padding: 12px;
+}
+
+.equipment-card__code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 2px;
+  color: white;
+}
+
+.status-badge[data-status="available"] { background: var(--available); }
+.status-badge[data-status="booked"] { background: var(--booked); }
+.status-badge[data-status="maintenance"] { background: var(--maint); }

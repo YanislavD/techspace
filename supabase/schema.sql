@@ -61,7 +61,7 @@ alter table comments enable row level security;
 alter table profiles enable row level security;
 
 create policy "equipment_read" on equipment
-  for select using (auth.role() = 'authenticated');
+  for select using (true);
 
 create policy "bookings_read" on bookings
   for select using (auth.role() = 'authenticated');
@@ -73,7 +73,7 @@ create policy "bookings_delete_own" on bookings
   for delete using (auth.uid() = user_id);
 
 create policy "comments_read" on comments
-  for select using (auth.role() = 'authenticated');
+  for select using (true);
 create policy "comments_insert_own" on comments
   for insert with check (auth.uid() = user_id);
 create policy "comments_update_own" on comments
@@ -82,6 +82,6 @@ create policy "comments_delete_own" on comments
   for delete using (auth.uid() = user_id);
 
 create policy "profiles_read" on profiles
-  for select using (auth.role() = 'authenticated');
+  for select using (true);
 create policy "profiles_update_own" on profiles
   for update using (auth.uid() = id);
