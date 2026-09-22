@@ -62,6 +62,8 @@ alter table profiles enable row level security;
 
 create policy "equipment_read" on equipment
   for select using (true);
+create policy "equipment_update_status" on equipment
+  for update using (auth.role() = 'authenticated');
 
 create policy "bookings_read" on bookings
   for select using (auth.role() = 'authenticated');
