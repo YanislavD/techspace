@@ -1,18 +1,118 @@
+.equipment-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.equipment-sidebar {
+  width: 190px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 24px;
+}
+
+.equipment-sidebar-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.category-filter-btn {
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.category-filter-btn:hover {
+  background: var(--surface-alt);
+}
+
+.category-filter-btn.active {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.equipment-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.equipment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.equipment-stats {
+  display: flex;
+  gap: 10px;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.stat-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.stat-pill--available {
+  background: color-mix(in srgb, var(--available) 15%, white);
+  color: var(--available);
+}
+
+.stat-pill--booked {
+  background: color-mix(in srgb, var(--booked) 15%, white);
+  color: var(--booked);
+}
+
 .equipment-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-  margin-top: 16px;
 }
 
 .equipment-card {
   display: block;
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: var(--radius-md);
   background: var(--surface);
   text-decoration: none;
   color: var(--ink);
   overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.equipment-card:hover {
+  box-shadow: 0 8px 20px rgba(33, 31, 26, 0.08);
+  transform: translateY(-2px);
 }
 
 .equipment-card__thumb {
@@ -37,33 +137,66 @@
 .equipment-card__thumb[data-category="default"] { background: var(--cat-default); }
 
 .equipment-card__body {
-  padding: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .equipment-card__code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--ink-muted);
 }
 
 .status-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
   font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 2px;
-  color: white;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  margin-top: 4px;
 }
 
-.status-badge[data-status="available"] { background: var(--available); }
-.status-badge[data-status="booked"] { background: var(--booked); }
-.status-badge[data-status="maintenance"] { background: var(--maint); }
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-badge[data-status="available"] {
+  background: color-mix(in srgb, var(--available) 15%, white);
+  color: var(--available);
+}
+
+.status-badge[data-status="booked"] {
+  background: color-mix(in srgb, var(--booked) 15%, white);
+  color: var(--booked);
+}
+
+.status-badge[data-status="maintenance"] {
+  background: color-mix(in srgb, var(--maint) 15%, white);
+  color: var(--maint);
+}
+
+.equipment-details__code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  margin: 0;
+}
 
 .equipment-details__image {
   width: 100%;
   max-width: 480px;
   height: 300px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   display: block;
   margin: 16px 0;

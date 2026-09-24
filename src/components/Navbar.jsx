@@ -6,7 +6,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar__brand">TechSpace</Link>
+      <Link to="/" className="navbar__brand">
+        <span className="navbar__logo">TS</span>
+        <span className="navbar__brand-text">
+          <span className="navbar__brand-name">TechSpace</span>
+          <span className="navbar__brand-subtitle">Университетска техника</span>
+        </span>
+      </Link>
 
       <div className="navbar__links">
         <Link to="/equipment">Каталог</Link>
@@ -22,7 +28,7 @@ function Navbar() {
         ) : (
           <>
             <Link to="/login">Вход</Link>
-            <Link to="/register">Регистрация</Link>
+            <Link to="/register" className="navbar__cta">Регистрация</Link>
           </>
         )}
       </div>

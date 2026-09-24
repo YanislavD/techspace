@@ -9,6 +9,8 @@ const slugs = {
   'Периферия': 'peripherals',
 }
 
+export const categories = Object.keys(slugs)
+
 export function categorySlug(category) {
   return slugs[category] ?? 'default'
 }
