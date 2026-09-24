@@ -1,16 +1,20 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.jsx'
+import { AuthModalProvider } from './context/AuthModalContext.jsx'
 import App from './App.jsx'
 import './styles/tokens.css'
 import './styles/layout.css'
 import './styles/forms.css'
 import './styles/equipment.css'
+import './styles/modal.css'
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <AuthProvider>
-            <App />
+            <AuthModalProvider>
+                <App />
+            </AuthModalProvider>
         </AuthProvider>
     </BrowserRouter>
 )

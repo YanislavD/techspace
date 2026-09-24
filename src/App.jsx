@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
+import AuthModal from './components/AuthModal.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
@@ -14,6 +15,7 @@ export default function App() {
   return (
     <>
       <Navbar />
+      <AuthModal />
       <main className="page">
         <Routes>
           <Route path="/" element={<Home />} />
