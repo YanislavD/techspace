@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 
-function Login() {
+export default function Login() {
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
@@ -34,8 +34,8 @@ function Login() {
   return (
     <div>
       <h1>Вход</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label htmlFor="email">Имейл</label>
           <input
             id="email"
@@ -46,7 +46,7 @@ function Login() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Парола</label>
           <input
             id="password"
@@ -57,9 +57,9 @@ function Login() {
           />
         </div>
 
-        {error && <p role="alert">{error}</p>}
+        {error && <p role="alert" className="form-error">{error}</p>}
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? 'Влизане...' : 'Влез'}
         </button>
       </form>
@@ -71,4 +71,3 @@ function Login() {
   )
 }
 
-export default Login

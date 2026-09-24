@@ -1,0 +1,64 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--surface);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--upcoming);
+  outline-offset: 1px;
+}
+
+.btn-primary {
+  align-self: flex-start;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--ink-muted);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: var(--booked);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.form-info {
+  color: var(--available);
+  font-size: 0.9rem;
+  margin: 0;
+}

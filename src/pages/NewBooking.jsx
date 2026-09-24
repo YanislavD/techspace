@@ -7,7 +7,7 @@ function todayISO() {
   return new Date().toISOString().slice(0, 10)
 }
 
-function NewBooking() {
+export default function NewBooking() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { item, loading: itemLoading } = useEquipmentItem(id)
@@ -51,8 +51,8 @@ function NewBooking() {
       <Link to={`/equipment/${id}`}>&larr; Назад</Link>
       <h1>Резервация: {item.name}</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label htmlFor="startDate">Начална дата</label>
           <input
             id="startDate"
@@ -63,7 +63,7 @@ function NewBooking() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="endDate">Крайна дата</label>
           <input
             id="endDate"
@@ -74,7 +74,7 @@ function NewBooking() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="purpose">Цел на резервацията</label>
           <textarea
             id="purpose"
@@ -83,14 +83,12 @@ function NewBooking() {
           />
         </div>
 
-        {(formError || error) && <p role="alert">{formError || error}</p>}
+        {(formError || error) && <p role="alert" className="form-error">{formError || error}</p>}
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? 'Резервиране...' : 'Резервирай'}
         </button>
       </form>
     </div>
   )
 }
-
-export default NewBooking

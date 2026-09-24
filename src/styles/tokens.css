@@ -20,11 +20,38 @@
   --cat-video: #1F6E5C;
   --cat-peripherals: #C1573A;
   --cat-default: var(--ink-muted);
+
+  --font-heading: 'Golos Text', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-body);
   margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+a {
+  color: var(--ink);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: var(--font-body);
 }

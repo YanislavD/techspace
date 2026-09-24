@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 
-function Register() {
+export default function Register() {
   const navigate = useNavigate()
 
   const [fullName, setFullName] = useState('')
@@ -51,8 +51,8 @@ function Register() {
   return (
     <div>
       <h1>Регистрация</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
           <label htmlFor="fullName">Име</label>
           <input
             id="fullName"
@@ -63,7 +63,7 @@ function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Имейл</label>
           <input
             id="email"
@@ -74,7 +74,7 @@ function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Парола</label>
           <input
             id="password"
@@ -85,7 +85,7 @@ function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="confirmPassword">Потвърди парола</label>
           <input
             id="confirmPassword"
@@ -96,10 +96,10 @@ function Register() {
           />
         </div>
 
-        {error && <p role="alert">{error}</p>}
-        {infoMessage && <p>{infoMessage}</p>}
+        {error && <p role="alert" className="form-error">{error}</p>}
+        {infoMessage && <p className="form-info">{infoMessage}</p>}
 
-        <button type="submit" disabled={loading}>
+        <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? 'Регистрация...' : 'Регистрирай се'}
         </button>
       </form>
@@ -110,5 +110,3 @@ function Register() {
     </div>
   )
 }
-
-export default Register

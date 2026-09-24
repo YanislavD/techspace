@@ -1,7 +1,7 @@
 import { useEquipment } from '../hooks/useEquipment.js'
 import EquipmentCard from '../components/EquipmentCard.jsx'
 
-function Equipment() {
+export default function Equipment() {
   const { equipment, loading, error } = useEquipment()
 
   if (loading) return <p>Зареждане...</p>
@@ -19,4 +19,3 @@ function Equipment() {
   )
 }
 
-export default Equipment

@@ -5,21 +5,27 @@ function Navbar() {
   const { user, signOut } = useAuth()
 
   return (
-    <nav>
-      <Link to="/">TechSpace</Link>
-      <Link to="/equipment">Каталог</Link>
+    <nav className="navbar">
+      <Link to="/" className="navbar__brand">TechSpace</Link>
 
-      {user ? (
-        <>
-          <span>{user.email}</span>
-          <button onClick={signOut}>Изход</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">Вход</Link>
-          <Link to="/register">Регистрация</Link>
-        </>
-      )}
+      <div className="navbar__links">
+        <Link to="/equipment">Каталог</Link>
+        {user && <Link to="/my-bookings">Моите резервации</Link>}
+      </div>
+
+      <div className="navbar__auth">
+        {user ? (
+          <>
+            <span>{user.email}</span>
+            <button onClick={signOut}>Изход</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Вход</Link>
+            <Link to="/register">Регистрация</Link>
+          </>
+        )}
+      </div>
     </nav>
   )
 }

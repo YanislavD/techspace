@@ -10,27 +10,27 @@ import MyBookings from './pages/MyBookings.jsx'
 import GuestRoute from './routes/GuestRoute.jsx'
 import PrivateRoute from './routes/PrivateRoute.jsx'
 
-function App() {
+export default function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/equipment" element={<Equipment />} />
-        <Route path="/equipment/:id" element={<EquipmentDetails />} />
+      <main className="page">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/equipment" element={<Equipment />} />
+          <Route path="/equipment/:id" element={<EquipmentDetails />} />
 
-        <Route element={<GuestRoute />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+          <Route element={<GuestRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-        <Route element={<PrivateRoute />}>
-          <Route path="/equipment/:id/book" element={<NewBooking />} />
-          <Route path="/my-bookings" element={<MyBookings />} />
-        </Route>
-      </Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/equipment/:id/book" element={<NewBooking />} />
+            <Route path="/my-bookings" element={<MyBookings />} />
+          </Route>
+        </Routes>
+      </main>
     </>
   )
 }
-
-export default App

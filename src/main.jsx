@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.jsx'
 import App from './App.jsx'
 import './styles/tokens.css'
+import './styles/layout.css'
+import './styles/forms.css'
 import './styles/equipment.css'
 
 createRoot(document.getElementById('root')).render(

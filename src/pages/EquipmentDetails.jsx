@@ -3,7 +3,7 @@ import { useEquipmentItem } from '../hooks/useEquipmentItem.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import StatusBadge from '../components/StatusBadge.jsx'
 
-function EquipmentDetails() {
+export default function EquipmentDetails() {
   const { id } = useParams()
   const { item, loading, error } = useEquipmentItem(id)
   const { user } = useAuth()
@@ -15,6 +15,9 @@ function EquipmentDetails() {
   return (
     <div>
       <Link to="/equipment">&larr; Назад към каталога</Link>
+      {item.image_url && (
+        <img src={item.image_url} alt={item.name} className="equipment-details__image" />
+      )}
       <h1>{item.name}</h1>
       <p>{item.code}</p>
       <p>{item.category}</p>
@@ -28,5 +31,3 @@ function EquipmentDetails() {
     </div>
   )
 }
-
-export default EquipmentDetails
