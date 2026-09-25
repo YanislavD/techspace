@@ -51,6 +51,39 @@
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  align-self: flex-start;
+  padding: 10px 23px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: var(--surface-alt);
+}
+
+.btn-danger {
+  align-self: flex-start;
+  padding: 11px 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--booked);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+.btn-danger:hover {
+  background: color-mix(in srgb, var(--booked) 85%, black);
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .form-error {
   color: var(--booked);
   font-size: 0.9rem;

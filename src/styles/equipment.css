@@ -126,15 +126,24 @@
   display: block;
 }
 
-.equipment-card__thumb[data-category="laptops"] { background: var(--cat-laptops); }
-.equipment-card__thumb[data-category="monitors"] { background: var(--cat-monitors); }
-.equipment-card__thumb[data-category="vr"] { background: var(--cat-vr); }
-.equipment-card__thumb[data-category="projectors"] { background: var(--cat-projectors); }
-.equipment-card__thumb[data-category="tablets"] { background: var(--cat-tablets); }
-.equipment-card__thumb[data-category="audio"] { background: var(--cat-audio); }
-.equipment-card__thumb[data-category="video"] { background: var(--cat-video); }
-.equipment-card__thumb[data-category="peripherals"] { background: var(--cat-peripherals); }
-.equipment-card__thumb[data-category="default"] { background: var(--cat-default); }
+.equipment-card__thumb[data-category="laptops"],
+.showcase-card__thumb[data-category="laptops"] { background: var(--cat-laptops); }
+.equipment-card__thumb[data-category="monitors"],
+.showcase-card__thumb[data-category="monitors"] { background: var(--cat-monitors); }
+.equipment-card__thumb[data-category="vr"],
+.showcase-card__thumb[data-category="vr"] { background: var(--cat-vr); }
+.equipment-card__thumb[data-category="projectors"],
+.showcase-card__thumb[data-category="projectors"] { background: var(--cat-projectors); }
+.equipment-card__thumb[data-category="tablets"],
+.showcase-card__thumb[data-category="tablets"] { background: var(--cat-tablets); }
+.equipment-card__thumb[data-category="audio"],
+.showcase-card__thumb[data-category="audio"] { background: var(--cat-audio); }
+.equipment-card__thumb[data-category="video"],
+.showcase-card__thumb[data-category="video"] { background: var(--cat-video); }
+.equipment-card__thumb[data-category="peripherals"],
+.showcase-card__thumb[data-category="peripherals"] { background: var(--cat-peripherals); }
+.equipment-card__thumb[data-category="default"],
+.showcase-card__thumb[data-category="default"] { background: var(--cat-default); }
 
 .equipment-card__body {
   padding: 14px;
@@ -227,18 +236,39 @@
   flex-shrink: 0;
 }
 
-.booking-row__delete {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-  cursor: pointer;
+.booking-row__buttons {
+  display: flex;
+  gap: 8px;
 }
 
-.booking-row__delete:hover {
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: var(--surface-alt);
+  color: var(--ink);
+}
+
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.icon-btn--delete:hover {
+  background: color-mix(in srgb, var(--booked) 12%, white);
   color: var(--booked);
+  border-color: color-mix(in srgb, var(--booked) 35%, var(--border));
 }
 
 .booking-row__actions .status-badge {
