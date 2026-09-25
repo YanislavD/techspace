@@ -76,3 +76,29 @@ export function useDeleteBooking() {
 
  return  { deleteBooking, loading, error }
 }
+
+export function useUpdateBooking() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const updateBooking = async (bookingId, equipmentId, startDate, endDate, purpose) => {
+    setLoading(true)
+    setError('')
+
+    const { error: updateError } = await supabase
+      .from('bookings')
+      .update({ start_date: startDate, end_date: endDate, purpose })
+      .eq('id', bookingId)
+
+    setLoading(false)
+
+    if (updateError) {
+      setError(updateError.message)
+      return false
+    }
+
+    return true
+  }
+
+  return { updateBooking, loading, error }
+}

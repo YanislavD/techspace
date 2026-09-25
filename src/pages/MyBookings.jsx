@@ -11,6 +11,12 @@ export default function MyBookings() {
     setBooking((current) => current.filter((b) => b.id !== bookingId))
   }
 
+  function handleUpdated(bookingId, changes) {
+    setBooking((current) =>
+      current.map((b) => (b.id === bookingId ? { ...b, ...changes } : b))
+    )
+  }
+
   return (
     <div>
       <h1>Моите резервации</h1>
@@ -20,7 +26,7 @@ export default function MyBookings() {
       ) : (
         <div className="booking-list">
           {booking.map((b) => (
-            <BookingCard key={b.id} booking={b} onDeleted={handleDeleted} />
+            <BookingCard key={b.id} booking={b} onDeleted={handleDeleted} onUpdated={handleUpdated} />
           ))}
         </div>
       )}
