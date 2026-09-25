@@ -17,7 +17,7 @@ export default function useMyBooking() {
 
         const { data, error } = await supabase
             .from('bookings')
-            .select('*, equipment(name, code, category, image_url)');
+            .select('*, equipment(id, name, code, category, image_url)');
 
         if (error) {
             setError(error.message);
@@ -28,5 +28,5 @@ export default function useMyBooking() {
         setLoading(false);
     }
 
-    return { booking, loading, error }
+    return { booking, setBooking, loading, error }
 }
