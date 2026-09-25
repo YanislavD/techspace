@@ -2,10 +2,14 @@ import useMyBooking from '../hooks/useMyBooking.js'
 import BookingCard from '../components/Booking.jsx'
 
 export default function MyBookings() {
-  const { booking, loading, error } = useMyBooking()
+  const { booking, setBooking, loading, error } = useMyBooking()
 
   if (loading) return <p>Зареждане...</p>
   if (error) return <p role="alert">Грешка: {error}</p>
+
+  function handleDeleted(bookingId) {
+    setBooking((current) => current.filter((b) => b.id !== bookingId))
+  }
 
   return (
     <div>
@@ -16,7 +20,7 @@ export default function MyBookings() {
       ) : (
         <div className="booking-list">
           {booking.map((b) => (
-            <BookingCard key={b.id} booking={b} />
+            <BookingCard key={b.id} booking={b} onDeleted={handleDeleted} />
           ))}
         </div>
       )}

@@ -39,3 +39,40 @@ export function useCreateBooking() {
 
   return { createBooking, loading, error }
 }
+
+export function useDeleteBooking() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const deleteBooking = async (bookingId, equipmentId) => {
+    setLoading(true)
+    setError('')
+
+    const { error: deleteError } = await supabase
+      .from('bookings')
+      .delete()
+      .eq('id', bookingId)
+
+    if (deleteError) {
+      setError(deleteError.message)
+      setLoading(false)
+      return false
+    }
+
+    const { error: updateError } = await supabase
+      .from('equipment')
+      .update({ status: 'available' })
+      .eq('id', equipmentId)
+
+    setLoading(false)
+
+    if (updateError) {
+      setError(updateError.message)
+      return false
+    }
+
+    return true
+  }
+
+ return  { deleteBooking, loading, error }
+}

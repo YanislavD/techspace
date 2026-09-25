@@ -199,8 +199,6 @@
   justify-content: space-between;
   gap: 24px;
   padding: 18px 20px;
-  text-decoration: none;
-  color: var(--ink);
 }
 
 .booking-row + .booking-row {
@@ -215,6 +213,37 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  text-decoration: none;
+  color: var(--ink);
+  flex: 1;
+  min-width: 0;
+}
+
+.booking-row__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.booking-row__delete {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.booking-row__delete:hover {
+  color: var(--booked);
+}
+
+.booking-row__actions .status-badge {
+  align-self: auto;
+  margin-top: 0;
 }
 
 .booking-row__code {
