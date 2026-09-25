@@ -8,7 +8,7 @@ Co-working/университетско пространство за резер
 
 ## 🔗 Live Demo
 
-**[тук ще е линкът към deploy-натото приложение]**
+**[https://techspace-nine.vercel.app/](https://techspace-nine.vercel.app/)**
 
 Не е нужна никаква инсталация или Supabase setup, за да се разгледа и тества
 проектът — приложението е вече deploy-нато и свързано с реална Supabase база
@@ -73,7 +73,7 @@ Guide** по-долу.
 - [x] Пълен CRUD на резервации (Create, Read, Update, Delete) + синхронизация
       на статуса на техниката, author-only edit/delete (RLS)
 - [x] Стилизиране по design system-а
-- [ ] Deploy на frontend-а
+- [x] Deploy на frontend-а ([техspace-nine.vercel.app](https://techspace-nine.vercel.app/))
 
 ## Локално стартиране (по избор — само ако искаш да пуснеш кода сам)
 
