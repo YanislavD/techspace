@@ -8,25 +8,25 @@ export default function useMyBooking() {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        fetchMyBooking()
-    }, [])
+        async function fetchMyBooking() {
+            setLoading(true);
+            setError('');
 
-    async function fetchMyBooking() {
-        setLoading(true);
-        setError('');
+            const { data, error } = await supabase
+                .from('bookings')
+                .select('*, equipment(id, name, code, category, image_url)');
 
-        const { data, error } = await supabase
-            .from('bookings')
-            .select('*, equipment(id, name, code, category, image_url)');
+            if (error) {
+                setError(error.message);
+            } else {
+                setBooking(data);
+            }
 
-        if (error) {
-            setError(error.message);
-        } else {
-            setBooking(data);
+            setLoading(false);
         }
 
-        setLoading(false);
-    }
+        fetchMyBooking()
+    }, [])
 
     return { booking, setBooking, loading, error }
 }

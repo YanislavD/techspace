@@ -66,7 +66,7 @@ create policy "equipment_update_status" on equipment
   for update using (auth.role() = 'authenticated');
 
 create policy "bookings_read" on bookings
-  for select using (auth.role() = 'authenticated');
+  for select using (auth.uid() = user_id);
 create policy "bookings_insert_own" on bookings
   for insert with check (auth.uid() = user_id);
 create policy "bookings_update_own" on bookings
