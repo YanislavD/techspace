@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEquipmentItem } from '../hooks/useEquipmentItem.js'
-import { useAuth } from '../context/AuthContext.jsx'
-import { useAuthModal } from '../context/AuthModalContext.jsx'
+import { useAuth } from '../context/auth-context.js'
+import { useAuthModal } from '../context/auth-modal-context.js'
 import StatusBadge from '../components/StatusBadge.jsx'
 import Equipment from './Equipment.jsx'
 

@@ -1,4 +1,4 @@
-import { useAuthModal } from '../context/AuthModalContext.jsx'
+import { useAuthModal } from '../context/auth-modal-context.js'
 import LoginForm from './LoginForm.jsx'
 import RegisterForm from './RegisterForm.jsx'
 

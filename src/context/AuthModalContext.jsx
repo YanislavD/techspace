@@ -1,6 +1,5 @@
-import { createContext, useContext, useState } from 'react'
-
-const AuthModalContext = createContext(null)
+import { useState } from 'react'
+import { AuthModalContext } from './auth-modal-context.js'
 
 export function AuthModalProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,10 +21,4 @@ export function AuthModalProvider({ children }) {
       {children}
     </AuthModalContext.Provider>
   )
-}
-
-export function useAuthModal() {
-  const ctx = useContext(AuthModalContext)
-  if (!ctx) throw new Error('useAuthModal must be used inside AuthModalProvider')
-  return ctx
 }

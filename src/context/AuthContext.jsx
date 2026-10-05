@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
-
-const AuthContext = createContext(null)
+import { AuthContext } from './auth-context.js'
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null)
@@ -32,10 +31,4 @@ export function AuthProvider({ children }) {
       {!loading && children}
     </AuthContext.Provider>
   )
-}
-
-export function useAuth() {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth must be used inside AuthProvider')
-  return ctx
 }

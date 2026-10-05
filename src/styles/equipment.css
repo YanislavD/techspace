@@ -332,3 +332,47 @@
   display: block;
   margin: 16px 0;
 }
+
+@media (max-width: 800px) {
+  .equipment-layout {
+    flex-direction: column;
+  }
+
+  .equipment-sidebar {
+    width: 100%;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .equipment-sidebar-title {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .equipment-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .booking-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .booking-row__actions {
+    align-items: stretch;
+  }
+
+  .booking-row__buttons {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .equipment-details__image {
+    height: 200px;
+  }
+}
