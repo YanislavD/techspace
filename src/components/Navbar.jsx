@@ -46,7 +46,9 @@ function Navbar() {
         <div className="navbar__auth">
           {user ? (
             <>
-              <span>{user.email}</span>
+              <span className="navbar__user" title={user.email}>
+                {user.user_metadata?.full_name || user.email}
+              </span>
               <button
                 onClick={() => {
                   signOut()
