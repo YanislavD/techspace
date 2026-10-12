@@ -38,14 +38,14 @@ a.btn-secondary {
   margin: 12px 0 20px;
 }
 
-.booking-layout {
+.form-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 24px;
   align-items: start;
 }
 
-.booking-form {
+.form-card {
   grid-column: 1;
   grid-row: 1;
   display: flex;
@@ -57,7 +57,7 @@ a.btn-secondary {
   padding: 28px;
 }
 
-.booking-form__title {
+.form-card__title {
   margin: 0;
   font-size: 1.15rem;
 }
@@ -68,7 +68,7 @@ a.btn-secondary {
   gap: 16px;
 }
 
-.booking-form .form-group textarea {
+.form-card .form-group textarea {
   resize: vertical;
 }
 
@@ -85,22 +85,61 @@ a.btn-secondary {
   color: var(--ink);
 }
 
-.booking-form__actions {
+.form-card__actions {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.booking-summary {
+.form-aside {
   grid-column: 2;
   grid-row: 1;
   position: sticky;
   top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-aside__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.form-aside__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.form-hint--right {
+  align-self: flex-end;
+}
+
+.booking-summary {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
+}
+
+.equipment-card--preview {
+  cursor: default;
+}
+
+.equipment-card--preview:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .booking-summary__image {
@@ -144,24 +183,24 @@ a.btn-secondary {
 }
 
 @media (max-width: 800px) {
-  .booking-layout {
+  .form-layout {
     grid-template-columns: 1fr;
   }
 
-  .booking-summary,
-  .booking-form {
+  .form-aside,
+  .form-card {
     grid-column: 1;
     grid-row: auto;
     position: static;
   }
 
-  .booking-summary {
+  .form-aside--first {
     order: -1;
   }
 }
 
 @media (max-width: 480px) {
-  .booking-form {
+  .form-card {
     padding: 20px;
   }
 

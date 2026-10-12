@@ -57,24 +57,26 @@ export default function NewBooking() {
       <Link to={`/equipment/${id}`}>&larr; Назад</Link>
       <h1 className="booking-title">Резервация</h1>
 
-      <div className="booking-layout">
-        <aside className="booking-summary">
-          {item.image_url && (
-            <img src={item.image_url} alt={item.name} className="booking-summary__image" />
-          )}
-          <div className="booking-summary__body">
-            <span className="booking-summary__code">{item.code}</span>
-            <h2 className="booking-summary__name">{item.name}</h2>
-            <div className="booking-summary__meta">
-              <span>{item.category}</span>
-              <StatusBadge status={item.status} />
+      <div className="form-layout">
+        <aside className="form-aside form-aside--first">
+          <div className="booking-summary">
+            {item.image_url && (
+              <img src={item.image_url} alt={item.name} className="booking-summary__image" />
+            )}
+            <div className="booking-summary__body">
+              <span className="booking-summary__code">{item.code}</span>
+              <h2 className="booking-summary__name">{item.name}</h2>
+              <div className="booking-summary__meta">
+                <span>{item.category}</span>
+                <StatusBadge status={item.status} />
+              </div>
+              {item.specs && <p className="booking-summary__specs">{item.specs}</p>}
             </div>
-            {item.specs && <p className="booking-summary__specs">{item.specs}</p>}
           </div>
         </aside>
 
-        <form className="booking-form" onSubmit={handleSubmit}>
-          <h2 className="booking-form__title">Избери период</h2>
+        <form className="form-card" onSubmit={handleSubmit}>
+          <h2 className="form-card__title">Избери период</h2>
 
           <div className="form-row">
             <div className="form-group">
@@ -118,7 +120,7 @@ export default function NewBooking() {
 
           {(formError || error) && <p role="alert" className="form-error">{formError || error}</p>}
 
-          <div className="booking-form__actions">
+          <div className="form-card__actions">
             <button type="submit" className="btn-primary" disabled={loading}>
               {loading ? 'Резервиране...' : 'Потвърди резервацията'}
             </button>
