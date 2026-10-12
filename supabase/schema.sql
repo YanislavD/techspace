@@ -75,6 +75,11 @@ create policy "equipment_insert_own" on equipment
 create policy "equipment_delete_own" on equipment
   for delete using (auth.uid() = owner_id and status = 'available');
 
+-- Политиката за update не може да ограничава колони, затова правото за промяна
+-- се дава само върху `status` (приложението сменя само него при резервация).
+revoke update on equipment from anon, authenticated;
+grant update (status) on equipment to authenticated;
+
 create policy "bookings_read" on bookings
   for select using (auth.uid() = user_id);
 create policy "bookings_insert_own" on bookings

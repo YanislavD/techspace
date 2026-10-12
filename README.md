@@ -172,7 +172,9 @@ Tables:
 
 Authorization is enforced in the database with **Row Level Security**:
 reservations can be read, changed and deleted only by their author, and
-equipment can be added and deleted only by its owner. The policies are in
+equipment can be added and deleted only by its owner. For everyone else, the
+only column of `equipment` that can be changed is `status` (needed when a
+reservation is made or cancelled). The policies and grants are in
 `supabase/schema.sql`.
 
 ## 7. Data Operations (CRUD)
