@@ -74,6 +74,13 @@
   color: var(--ink-muted);
 }
 
+.navbar__user {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .navbar__auth a {
   text-decoration: none;
   color: var(--ink-muted);

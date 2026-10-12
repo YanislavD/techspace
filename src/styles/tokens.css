@@ -38,6 +38,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
+  font-feature-settings: "locl" 0;
   margin: 0;
 }
 
