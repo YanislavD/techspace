@@ -28,9 +28,146 @@
   font-size: 1rem;
 }
 
-a.btn-primary {
+a.btn-primary,
+a.btn-secondary {
   display: inline-block;
   text-decoration: none;
+}
+
+.booking-title {
+  margin: 12px 0 20px;
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.booking-form {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+}
+
+.booking-form__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.booking-form .form-group textarea {
+  resize: vertical;
+}
+
+.booking-duration {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.booking-duration strong {
+  color: var(--ink);
+}
+
+.booking-form__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.booking-summary {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  top: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.booking-summary__image {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.booking-summary__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+}
+
+.booking-summary__code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.booking-summary__name {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.booking-summary__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.booking-summary__specs {
+  margin: 4px 0 0;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-summary,
+  .booking-form {
+    grid-column: 1;
+    grid-row: auto;
+    position: static;
+  }
+
+  .booking-summary {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-form {
+    padding: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form-group input:focus,
