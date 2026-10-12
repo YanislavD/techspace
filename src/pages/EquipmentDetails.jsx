@@ -3,7 +3,6 @@ import { useEquipmentItem } from '../hooks/useEquipmentItem.js'
 import { useAuth } from '../context/auth-context.js'
 import { useAuthModal } from '../context/auth-modal-context.js'
 import StatusBadge from '../components/StatusBadge.jsx'
-import Equipment from './Equipment.jsx'
 
 export default function EquipmentDetails() {
   const { id } = useParams()
@@ -26,8 +25,6 @@ export default function EquipmentDetails() {
 
   return (
     <>
-      <Equipment />
-
       {!authModalOpen && (
         <div className="modal-backdrop equipment-modal-backdrop">
           <div className="modal-card equipment-modal">

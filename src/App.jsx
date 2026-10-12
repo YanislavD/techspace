@@ -20,8 +20,9 @@ export default function App() {
       <main className="page">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/equipment" element={<Equipment />} />
-          <Route path="/equipment/:id" element={<EquipmentDetails />} />
+          <Route path="/equipment" element={<Equipment />}>
+            <Route path=":id" element={<EquipmentDetails />} />
+          </Route>
 
           <Route element={<GuestRoute />}>
             <Route path="/login" element={<Login />} />
