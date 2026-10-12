@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/auth-context.js'
 
-function Navbar() {
+function Navbar() { 
   const { user, signOut } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -47,7 +47,7 @@ function Navbar() {
           {user ? (
             <>
               <span className="navbar__user" title={user.email}>
-                {user.user_metadata?.full_name || user.email}
+                Здравей, {user.user_metadata?.full_name || user.email}!
               </span>
               <button
                 onClick={() => {
