@@ -1,0 +1,22 @@
+name: Keep Supabase active
+
+# The free Supabase plan pauses a project after about a week without activity.
+# This workflow sends a tiny read request every few days so the database stays awake.
+
+on:
+  schedule:
+    - cron: '0 7 * * 1,3,5' # Monday, Wednesday, Friday at 07:00 UTC
+  workflow_dispatch: # allows running it manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          curl --fail --silent --show-error \
+            "$SUPABASE_URL/rest/v1/equipment?select=id&limit=1" \
+            -H "apikey: $SUPABASE_ANON_KEY"
