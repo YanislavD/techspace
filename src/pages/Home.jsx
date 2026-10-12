@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useEquipment } from '../hooks/useEquipment.js'
+import { useAuth } from '../context/auth-context.js'
+import { useAuthModal } from '../context/auth-modal-context.js'
 import { categories, categorySlug } from '../lib/categorySlug.js'
 
 const VISIBLE_COUNT = 3
@@ -8,6 +10,8 @@ const VISIBLE_COUNT = 3
 export default function Home() {
   const { equipment, loading } = useEquipment()
   const [showcaseIndex, setShowcaseIndex] = useState(0)
+  const { user } = useAuth()
+  const { openModal } = useAuthModal()
 
   const available = equipment.filter((item) => item.status === 'available')
   const diverseFirst = available.filter(
@@ -37,6 +41,8 @@ export default function Home() {
           <p>
             Резервирай лаптопи, монитори, VR очила и друга техника от
             университетското co-working пространство — онлайн, за минути.
+            Имаш техника, която не ползваш? Добави я в каталога и я сподели с
+            другите.
           </p>
         </div>
 
@@ -108,10 +114,28 @@ export default function Home() {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: 40 }}>
-        <Link to="/equipment" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none' }}>
+      <div className="home-share">
+        <h2>Имаш техника за споделяне?</h2>
+        <p>
+          Всеки регистриран потребител може да добави своя техника към
+          каталога: лаптоп, монитор, джойстик или друго. Другите я резервират, а
+          ти я следиш и управляваш от „Моята техника“.
+        </p>
+      </div>
+
+      <div className="home-cta">
+        <Link to="/equipment" className="btn-primary">
           Разгледай каталога →
         </Link>
+        {user ? (
+          <Link to="/equipment/new" className="btn-secondary">
+            + Добави своя техника
+          </Link>
+        ) : (
+          <button className="btn-secondary" onClick={() => openModal('login')}>
+            + Добави своя техника
+          </button>
+        )}
       </div>
     </div>
   )

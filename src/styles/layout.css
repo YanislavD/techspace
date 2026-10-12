@@ -264,6 +264,32 @@
   line-height: 1.5;
 }
 
+.home-share {
+  margin-top: 40px;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.home-share h2 {
+  margin: 0 0 8px;
+}
+
+.home-share p {
+  margin: 0;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.home-cta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
 @media (max-width: 720px) {
   .navbar {
     flex-wrap: wrap;
