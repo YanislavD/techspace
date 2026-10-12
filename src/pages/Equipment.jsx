@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useEquipment } from '../hooks/useEquipment.js'
+import { useAuth } from '../context/auth-context.js'
+import { useAuthModal } from '../context/auth-modal-context.js'
 import { categories } from '../lib/categorySlug.js'
 import EquipmentCard from '../components/EquipmentCard.jsx'
 
 export default function Equipment() {
   const { equipment, loading, error } = useEquipment()
   const [activeCategory, setActiveCategory] = useState('all')
+  const { user } = useAuth()
+  const { openModal } = useAuthModal()
 
   if (loading) return <p>Зареждане...</p>
   if (error) return <p role="alert">Грешка: {error}</p>
@@ -46,6 +51,13 @@ export default function Equipment() {
             <span className="stat-pill stat-pill--available">{availableCount} свободни</span>
             <span className="stat-pill stat-pill--booked">{bookedCount} резервирани</span>
           </div>
+          {user ? (
+            <Link to="/equipment/new" className="btn-primary">+ Добави техника</Link>
+          ) : (
+            <button className="btn-primary" onClick={() => openModal('login')}>
+              + Добави техника
+            </button>
+          )}
         </div>
 
         <div className="equipment-grid">

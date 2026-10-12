@@ -18,16 +18,24 @@
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--surface);
+  font-family: var(--font-body);
   font-size: 1rem;
 }
 
+a.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   outline: 2px solid var(--upcoming);
   outline-offset: 1px;
 }

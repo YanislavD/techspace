@@ -7,6 +7,7 @@ import Register from './pages/Register.jsx'
 import Equipment from './pages/Equipment.jsx'
 import EquipmentDetails from './pages/EquipmentDetails.jsx'
 import NewBooking from './pages/NewBooking.jsx'
+import NewEquipment from './pages/NewEquipment.jsx'
 import MyBookings from './pages/MyBookings.jsx'
 import GuestRoute from './routes/GuestRoute.jsx'
 import PrivateRoute from './routes/PrivateRoute.jsx'
@@ -28,6 +29,7 @@ export default function App() {
           </Route>
 
           <Route element={<PrivateRoute />}>
+            <Route path="/equipment/new" element={<NewEquipment />} />
             <Route path="/equipment/:id/book" element={<NewBooking />} />
             <Route path="/my-bookings" element={<MyBookings />} />
           </Route>
