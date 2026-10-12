@@ -290,10 +290,26 @@
   cursor: not-allowed;
 }
 
+.icon-btn--edit {
+  background: color-mix(in srgb, var(--edit) 16%, white);
+  color: var(--edit-ink);
+  border-color: color-mix(in srgb, var(--edit) 45%, white);
+}
+
+.icon-btn--edit:hover {
+  background: color-mix(in srgb, var(--edit) 32%, white);
+  color: var(--edit-ink);
+}
+
+.icon-btn--delete {
+  background: color-mix(in srgb, var(--danger) 12%, white);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, white);
+}
+
 .icon-btn--delete:hover {
-  background: color-mix(in srgb, var(--booked) 12%, white);
-  color: var(--booked);
-  border-color: color-mix(in srgb, var(--booked) 35%, var(--border));
+  background: color-mix(in srgb, var(--danger) 25%, white);
+  color: var(--danger);
 }
 
 .booking-row__actions .status-badge {
