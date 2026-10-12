@@ -52,14 +52,18 @@ to share), so the catalog does not depend on a single administrator.
 - **Public data shown:** the full equipment catalog (name, code, category,
   specs, photo, status available/booked) and counters of available and booked
   items.
-- The **Book** ("Резервирай") and **Add equipment** ("+ Добави техника")
-  buttons are visible, but for a guest they open a login/register modal
-  instead of performing the action.
+- The home page explains that anyone can share equipment ("Имаш техника за
+  споделяне?").
+- The **Book** ("Резервирай") and **Add equipment** ("+ Добави техника",
+  also "+ Добави своя техника" on the home page) buttons are visible, but for
+  a guest they open a login/register modal instead of performing the action.
 
 ### Authenticated User
 
 - **Main sections / pages:** `/my-bookings` (my reservations),
-  `/my-equipment` (equipment I added), plus everything a guest can access.
+  `/my-equipment` (equipment I added), plus everything a guest can access. The
+  navbar greets the user by name ("Здравей, <name>!"), taken from the name
+  entered at registration.
 - **Details pages:** `/equipment/:id` - equipment details shown in a modal
   window over the catalog.
 - **Create / Edit / Delete actions:**
@@ -136,6 +140,11 @@ In total: 8 pages and 9 routes.
 - Shows equipment cards: photo, code, name, category and status.
 - **Category filter** in the sidebar (a row above the catalog on phones) and
   "available / booked" counters.
+- **Sorting by status:** a "Подреди" select puts items with the chosen status
+  first - available ("На разположение"), booked ("Резервирана") or in
+  maintenance ("В поддръжка") - while keeping the code order inside each group.
+  It combines with the category filter and is done in the browser, without a
+  new request.
 - Data comes from the `equipment` table in Supabase.
 
 ### Details Page
@@ -209,8 +218,10 @@ through `setBooking`, without refetching.
 ### Forms Used
 
 - Login (`LoginForm`) and Register (`RegisterForm`) - on pages and in a modal
-- New reservation (`NewBooking`), edit reservation (`UpdateModal`)
-- Add equipment (`NewEquipment`)
+- New reservation (`NewBooking`) - shows a summary card of the chosen
+  equipment and the total number of days; edit reservation (`UpdateModal`)
+- Add equipment (`NewEquipment`) - shows a live preview of the catalog card
+  (name, category and photo update as the user types)
 
 All fields are **controlled inputs** (`value` + `onChange`), and forms are
 submitted with `onSubmit` and `e.preventDefault()`.
@@ -268,7 +279,7 @@ the menu becomes a hamburger, and filters, rows and grids reflow.
 
 **As a guest**
 
-1. Open **Catalog** ("Каталог") and filter by category.
+1. Open **Catalog** ("Каталог"), filter by category and sort by status.
 2. Click an item - its details open in a window over the catalog.
 3. Press **Book** - a login/register modal appears.
 
@@ -276,12 +287,14 @@ the menu becomes a hamburger, and filters, rows and grids reflow.
 
 1. Create an account (email and a password of at least 6 characters) - you are
    signed in automatically.
-2. Open an available item, press **Book**, and choose dates and a purpose.
+2. Open an available item, press **Book**, and choose dates and a purpose;
+   the page shows the total number of days.
 3. In **My reservations** ("Моите резервации") you see the new reservation with
    its status; you can edit it (pencil) or delete it (trash, with
    confirmation). After deleting, the equipment is available again.
 4. From **Catalog → Add equipment** enter a name, category, specs and
-   optionally an image link.
+   optionally an image link; the preview card on the right shows how the item
+   will look in the catalog.
 5. In **My equipment** ("Моята техника") you see only what you added. From the
    details you can delete it while it is available.
 6. Try opening `/login` while signed in - you are sent back to `/`. Log out
@@ -416,5 +429,6 @@ policies, not only by the interface.
 - [x] Catalog + details (real fetch, URL parameters)
 - [x] Full CRUD for reservations, author-only through RLS
 - [x] Add and delete your own equipment, "My equipment" page
+- [x] Catalog sorting by status, live preview when adding equipment
 - [x] Responsive layout for phones
 - [x] Frontend deployed ([techspace-nine.vercel.app](https://techspace-nine.vercel.app/))
