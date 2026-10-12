@@ -93,6 +93,31 @@
   color: var(--booked);
 }
 
+.equipment-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sort-select:focus {
+  outline: 2px solid var(--upcoming);
+  outline-offset: 1px;
+}
+
 .equipment-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
