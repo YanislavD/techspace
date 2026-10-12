@@ -40,6 +40,7 @@ function Navbar() {
         <div className="navbar__links">
           <Link to="/equipment" onClick={closeMenu}>Каталог</Link>
           {user && <Link to="/my-bookings" onClick={closeMenu}>Моите резервации</Link>}
+          {user && <Link to="/my-equipment" onClick={closeMenu}>Моята техника</Link>}
         </div>
 
         <div className="navbar__auth">
