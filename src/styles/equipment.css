@@ -322,6 +322,12 @@
   margin: 0;
 }
 
+.equipment-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .equipment-details__image {
   width: 100%;
   max-width: 480px;

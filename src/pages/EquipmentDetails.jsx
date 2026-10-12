@@ -1,5 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 import { useEquipmentItem } from '../hooks/useEquipmentItem.js'
+import { useDeleteEquipment } from '../hooks/useEquipment.js'
 import { useAuth } from '../context/auth-context.js'
 import { useAuthModal } from '../context/auth-modal-context.js'
 import StatusBadge from '../components/StatusBadge.jsx'
@@ -10,6 +12,22 @@ export default function EquipmentDetails() {
   const { item, loading, error } = useEquipmentItem(id)
   const { user } = useAuth()
   const { isOpen: authModalOpen, openModal } = useAuthModal()
+  const { onDeleted } = useOutletContext()
+  const { deleteEquipment, loading: deleteLoading, error: deleteError } = useDeleteEquipment()
+  const [isConfirmingDelete, setIsConfirmingDelete] = useState(false)
+
+  let isOwner = false
+  if (user && item && item.owner_id === user.id) {
+    isOwner = true
+  }
+
+  async function confirmDelete() {
+    const ok = await deleteEquipment(id)
+    if (ok) {
+      onDeleted(id)
+      navigate('/equipment')
+    }
+  }
 
   function handleBookClick() {
     if (user) {
@@ -49,11 +67,53 @@ export default function EquipmentDetails() {
                 </div>
                 <p>{item.specs}</p>
 
-                {item.status === 'available' && (
-                  <button className="btn-primary" onClick={handleBookClick}>
-                    Резервирай
-                  </button>
+                {isOwner && <p className="auth-subtitle">Това е твоя техника.</p>}
+
+                <div className="equipment-details__actions">
+                  {item.status === 'available' && !isOwner && !isConfirmingDelete && (
+                    <button className="btn-primary" onClick={handleBookClick}>
+                      Резервирай
+                    </button>
+                  )}
+
+                  {isOwner && item.status === 'available' && !isConfirmingDelete && (
+                    <button
+                      type="button"
+                      className="btn-secondary"
+                      onClick={() => setIsConfirmingDelete(true)}
+                    >
+                      Изтрий техниката
+                    </button>
+                  )}
+
+                  {isOwner && isConfirmingDelete && (
+                    <>
+                      <button
+                        type="button"
+                        className="btn-secondary"
+                        onClick={() => setIsConfirmingDelete(false)}
+                      >
+                        Отказ
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-danger"
+                        onClick={confirmDelete}
+                        disabled={deleteLoading}
+                      >
+                        {deleteLoading ? 'Изтриване...' : 'Изтрий'}
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {isOwner && isConfirmingDelete && (
+                  <p className="auth-subtitle">Сигурен ли си? Това не може да се върне.</p>
                 )}
+                {isOwner && item.status !== 'available' && (
+                  <p className="auth-subtitle">Не можеш да изтриеш техника, докато е резервирана.</p>
+                )}
+                {deleteError && <p role="alert" className="form-error">{deleteError}</p>}
               </>
             )}
           </div>

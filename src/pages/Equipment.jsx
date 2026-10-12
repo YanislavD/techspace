@@ -7,7 +7,7 @@ import { categories } from '../lib/categorySlug.js'
 import EquipmentCard from '../components/EquipmentCard.jsx'
 
 export default function Equipment() {
-  const { equipment, loading, error } = useEquipment()
+  const { equipment, setEquipment, loading, error } = useEquipment()
   const [activeCategory, setActiveCategory] = useState('all')
   const { user } = useAuth()
   const { openModal } = useAuthModal()
@@ -22,6 +22,10 @@ export default function Equipment() {
 
   const availableCount = equipment.filter((item) => item.status === 'available').length
   const bookedCount = equipment.filter((item) => item.status === 'booked').length
+
+  function handleDeleted(id) {
+    setEquipment((current) => current.filter((item) => item.id !== id))
+  }
 
   return (
       <>
@@ -68,7 +72,7 @@ export default function Equipment() {
              </div>
            </div>
          </div>
-        <Outlet />
+        <Outlet context={{ onDeleted: handleDeleted }} />
       </>
   )
 }

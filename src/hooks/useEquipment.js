@@ -23,7 +23,39 @@ export function useEquipment() {
     fetchEquipment()
   }, [])
 
-  return { equipment, loading, error }
+  return { equipment, setEquipment, loading, error }
+}
+
+export function useDeleteEquipment() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  async function deleteEquipment(id) {
+    setLoading(true)
+    setError('')
+
+    const { data, error: deleteError } = await supabase
+      .from('equipment')
+      .delete()
+      .eq('id', id)
+      .select()
+
+    setLoading(false)
+
+    if (deleteError) {
+      setError(deleteError.message)
+      return false
+    }
+
+    if (data.length === 0) {
+      setError('Техниката не може да бъде изтрита. Може да е резервирана или да не е твоя.')
+      return false
+    }
+
+    return true
+  }
+
+  return { deleteEquipment, loading, error }
 }
 
 export function useCreateEquipment() {
