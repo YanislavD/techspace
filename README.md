@@ -309,8 +309,10 @@ the menu becomes a hamburger, and filters, rows and grids reflow.
   is created or deleted. It is not computed from the dates.
 - A user cannot edit equipment they added, only delete it.
 - The database runs on the free Supabase plan, which pauses projects after
-  about a week without activity. If the app does not load data, the project has
-  to be restored from the Supabase dashboard.
+  about a week without activity. A scheduled GitHub Actions workflow
+  (`.github/workflows/keep-alive.yml`) sends a small request three times a week
+  to keep it active. If the app ever fails to load data, the project can be
+  restored from the Supabase dashboard.
 
 ---
 
