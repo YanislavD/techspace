@@ -25,3 +25,35 @@ export function useEquipment() {
 
   return { equipment, loading, error }
 }
+
+export function useCreateEquipment() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  async function createEquipment({ name, category, specs, imageUrl }) {
+    setLoading(true)
+    setError('')
+
+    const { data, error: insertError } = await supabase
+      .from('equipment')
+      .insert({
+        name,
+        category,
+        specs: specs || null,
+        image_url: imageUrl || null,
+      })
+      .select()
+      .single()
+
+    setLoading(false)
+
+    if (insertError) {
+      setError(insertError.message)
+      return null
+    }
+
+    return data
+  }
+
+  return { createEquipment, loading, error }
+}

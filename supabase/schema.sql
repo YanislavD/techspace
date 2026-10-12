@@ -1,9 +1,12 @@
 -- TechSpace: schema + RLS policies
 -- Изпълни целия този файл наведнъж в Supabase SQL Editor.
 
+create sequence equipment_code_seq start 100;
+
 create table equipment (
   id uuid primary key default gen_random_uuid(),
-  code text unique not null,
+  code text unique not null
+    default 'EQ-' || lpad(nextval('equipment_code_seq')::text, 3, '0'),
   name text not null,
   category text not null check (category in
     ('Лаптопи','Монитори','Периферия','VR','Проектори','Аудио','Видео','Таблети')),
@@ -11,8 +14,11 @@ create table equipment (
   status text not null default 'available'
     check (status in ('available','booked','maintenance')),
   image_url text,
+  owner_id uuid references auth.users(id) on delete set null default auth.uid(),
   created_at timestamptz default now()
 );
+
+grant usage on sequence equipment_code_seq to authenticated;
 
 create table bookings (
   id uuid primary key default gen_random_uuid(),
@@ -64,6 +70,10 @@ create policy "equipment_read" on equipment
   for select using (true);
 create policy "equipment_update_status" on equipment
   for update using (auth.role() = 'authenticated');
+create policy "equipment_insert_own" on equipment
+  for insert with check (auth.uid() = owner_id);
+create policy "equipment_delete_own" on equipment
+  for delete using (auth.uid() = owner_id and status = 'available');
 
 create policy "bookings_read" on bookings
   for select using (auth.uid() = user_id);
